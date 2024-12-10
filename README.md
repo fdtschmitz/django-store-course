@@ -37,13 +37,11 @@ In this course, you will learn how to build a fully functional e-commerce store 
 ### Prerequisites
 
 Ensure you have the following installed on your system:
-- Python 3.8+
-- PostgreSQL
-- Docker & Docker Compose (optional, for containerized setup)
+- Python 3.12+
 
 ### Installation
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/build-django-ecommerce.git
-   cd build-django-ecommerce
+   git clone https://github.com/fdtschmitz/django-store-course.git
+   cd django-store-course
