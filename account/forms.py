@@ -14,6 +14,10 @@ class CreateUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(CreateUserForm, self).__init__(*args, **kwargs)
 
+        # Make email as required
+
+        self.fields['email'].required = True
+
     def clean_email(self):
 
         email = self.cleaned_data.get("email")
@@ -22,6 +26,8 @@ class CreateUserForm(UserCreationForm):
 
             raise forms.ValidationError('This email is invalid')
         
-        if len(email >= 350):
+        if len(email) >= 350:
 
             raise forms.ValidationError("Your email is too long")
+        
+        return email

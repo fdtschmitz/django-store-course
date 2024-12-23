@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '192.168.68.112',
     '127.0.0.1',
+    '192.168.68.111',
+    '0.0.0.0',
 ]
 
 
@@ -44,9 +46,12 @@ INSTALLED_APPS = [
     'store', # Django Store app
     'cart', # Shopping Cart app
     'account',
-    'mathfilters'
+    'mathfilters',
+    'crispy_forms',
 
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
