@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
+from .forms import CreateUserForm, LoginForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
 from . token import user_tokenizer_generate
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-
+from django.contrib.auth.models import auth
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -96,3 +98,52 @@ def email_verification_failed(request):
 
     return render(request, 'account/registration/email-verification-failed.html')
 
+def my_login(request):
+
+    form = LoginForm()
+
+    if request.method == 'POST':
+
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+
+            username = request.POST.get('username')
+
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+
+                auth.login(request, user)
+
+                return redirect("dashboard")
+
+    context = {'form':form}
+
+    return render(request, 'account/my-login.html', context=context)
+
+def user_logout(request):
+
+    auth.logout(request)
+
+    return redirect('store')
+
+
+@login_required(login_url='my-login')
+def dashboard(request):
+
+    return render(request, 'account/dashboard.html')
+
+
+@login_required(login_url='my-login')
+def profile_management(request):
+
+    return render(request, 'account/profile-management.html')
+
+
+@login_required(login_url='my-login')
+def delete_account(request):
+
+    return render(request, 'account/delete-account.html')
