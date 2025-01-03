@@ -18,8 +18,7 @@
             <h3> Create your account </h3>
             <h5> Purchase your favourite items today! </h5>
 
-            <br>
-            <br>
+            <hr>
 
             <form method="POST" autocomplete="off">
                 
@@ -27,20 +26,24 @@
 
                 {{form.username|as_crispy_field}}
 
-                <br> <br>
+                <br>
 
                 {{form.email|as_crispy_field}}
 
-                <br> <br>
+                <br>
 
                 {{form.password1|as_crispy_field}}
 
-                <br> <br>
+                <br>
 
                 {{form.password2|as_crispy_field}}
 
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg w-100 btn-block p-2"> &nbsp; Create Account </button>
                 <br> <br>
-                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-block p-2"> &nbsp; Create Account </button>
+                <div class="text-center">
+                    <a href="{% url 'my-login' %}"> Already have an account? Login </a>
+                </div>
 
 
             </form>
