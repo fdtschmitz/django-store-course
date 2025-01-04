@@ -121,13 +121,17 @@
 
                     <li class="nav-item">
 
-                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Hi, {{user}} </a>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'dashboard' %}"> 
+                            Hi, {{user}}
+                            <br>
+                            <span style="font-size: smaller;">(my account)</span>
+                        </a>
 
                     </li>
 
                     <li class="nav-item">
                 
-                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'dashboard' %}"> My account </a>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
 
                     </li>                  
 
@@ -190,6 +194,42 @@
 
 
     </nav>
+
+    {% for message in messages %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                
+                {{message}}
+                
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+            </div>
+        {% endif %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                
+                {{message}}
+                
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+            </div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                    
+            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                
+                {{message}}
+                
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+            </div>
+        {% endif %}
+
+    {% endfor %}
 
 
     <body>
