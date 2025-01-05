@@ -122,16 +122,16 @@
                     <li class="nav-item">
 
                         <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'dashboard' %}"> 
-                            Hi, {{user}}
-                            <br>
-                            <span style="font-size: smaller;">(my account)</span>
+                            <i class="fa fa-home" aria-hidden="true"></i> &nbsp; {{user}}                            
                         </a>
 
                     </li>
 
                     <li class="nav-item">
                 
-                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> Logout </a>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout
+                        </a>
 
                     </li>                  
 
@@ -139,14 +139,21 @@
 
                     <li class="nav-item">
                 
-                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> Register </a>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp;
+                            Register
+
+                        </a>
 
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'my-login' %}"> Login </a>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'my-login' %}"> 
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;
+                            Login
+                        </a>
 
                     </li>
 
@@ -199,8 +206,8 @@
 
         {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
         
-            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                
+            <div id="message-timer" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;
                 {{message}}
                 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -210,8 +217,8 @@
 
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                     
-            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                
+            <div id="message-timer" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;
                 {{message}}
                 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -220,8 +227,8 @@
         {% endif %}
         {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
                     
-            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                
+            <div id="message-timer" class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                <i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp;
                 {{message}}
                 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -250,6 +257,8 @@
 
 
     </body>
+
+    <script src="{% static 'js/app.js' %}"></script>
 
 
 </html>

@@ -10,6 +10,7 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from decouple import config
 
 
 
@@ -45,8 +46,8 @@ def register(request):
             })
 
             user.email_user(subject=subject, message=message)
-
-            print(message)
+            if config('DEBUG'):
+                print(message)
 
             return redirect('email-verification-sent')
 
