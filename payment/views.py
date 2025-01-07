@@ -32,15 +32,17 @@ def checkout(request):
             #Authenticated users with shipping address
             shipping_address = ShippingAddress.objects.get(user=request.user.id)
 
-            context = { 'shipping': shipping_address}
+            context = { 'shipping': shipping_address,
+                        'paypal_client_id': config('PAYPAL_CLIENT_ID'),
+                       }
 
             return render(request, 'payment/checkout.html', context)
 
         except:
 
             #Authenticated user without shipping address
-
-            return render(request, 'payment/checkout.html')
+            context = { 'paypal_client_id': config('PAYPAL_CLIENT_ID') }
+            return render(request, 'payment/checkout.html', context)
     
 
     return render(request, 'payment/checkout.html')  # Checkout page
