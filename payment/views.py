@@ -24,6 +24,8 @@ def payment_failed(request):
 def checkout(request):
 
     #Users with account - prefill the form with their details
+    context = { 'paypal_client_id': config('PAYPAL_CLIENT_ID'),
+            }
 
     if request.user.is_authenticated:
 
@@ -41,11 +43,13 @@ def checkout(request):
         except:
 
             #Authenticated user without shipping address
-            context = { 'paypal_client_id': config('PAYPAL_CLIENT_ID') }
+            context = { 'paypal_client_id': config('PAYPAL_CLIENT_ID'),
+                }
+            
             return render(request, 'payment/checkout.html', context)
     
 
-    return render(request, 'payment/checkout.html')  # Checkout page
+    return render(request, 'payment/checkout.html', context) # Checkout page
 
 def complete_order(request):
 
