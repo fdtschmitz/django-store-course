@@ -8,4 +8,6 @@ urlpatterns = [
     path('payment-failed', views.payment_failed, name='payment-failed'),  # Payment failed page
 
     path('checkout', views.checkout, name='checkout'),  # Checkout page
+
+    path('complete-order', views.complete_order, name='complete-order'),  # Complete order page
 ]
